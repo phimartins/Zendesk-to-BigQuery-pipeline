@@ -26,7 +26,7 @@
 - urllib.parse
 - numpy
 
-You can install packeges with one of this commands:
+You can install packages with one of this commands:
 - prompt command
 ```
 pip install package-name-here
