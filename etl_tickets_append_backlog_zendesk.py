@@ -1,13 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[71]:
-
-
 from google.cloud import bigquery
-SERVICE_ACCOUNT_JSON = r'C:\pipelines\auth\paylivre-304215-78a2e9fec1be.json'
+SERVICE_ACCOUNT_JSON = r'your service account path'
 client = bigquery.Client.from_service_account_json(SERVICE_ACCOUNT_JSON)
-table_id = "paylivre-304215.suporte.zendesk_tickets"
+table_id = "your table id"
 
 
 # In[72]:
@@ -291,7 +285,7 @@ class Zendesk:
 # In[58]:
 
 
-#closed_tickets = "SELECT distinct(ticket_id) FROM `paylivre-304215.suporte.closed_tickets` ORDER BY ticket_id ASC"
+#closed_tickets = "SELECT distinct(ticket_id) FROM `table_id` ORDER BY ticket_id ASC"
 #query_job = client.query(closed_tickets)
 
 #closed_tickets_ids = []
@@ -466,29 +460,29 @@ job.result()
 # In[138]:
 
 
-append_to_backlog = """INSERT INTO `paylivre-304215.suporte.open_tickets` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
+append_to_backlog = """INSERT INTO `table_id` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
           status,recipient,requester_id,submitter_id,assignee_id,group_id,has_incidents,is_public,
           satisfaction_rating,motivo,is_client,estado_uf,fila,nota_csat,dependencia,social_message_channel_info,extraction_date)
 SELECT * FROM
-  `paylivre-304215.suporte.zendesk_tickets`
+  `table_id`
 WHERE status = 'open';
-INSERT INTO `paylivre-304215.suporte.new_tickets` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
+INSERT INTO `table_id` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
           status,recipient,requester_id,submitter_id,assignee_id,group_id,has_incidents,is_public,
           satisfaction_rating,motivo,is_client,estado_uf,fila,nota_csat,dependencia,social_message_channel_info,extraction_date)
 SELECT * FROM
-  `paylivre-304215.suporte.zendesk_tickets`
+  `table_id`
 WHERE status = 'new';
-INSERT INTO `paylivre-304215.suporte.pending_tickets` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
+INSERT INTO `table_id` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
           status,recipient,requester_id,submitter_id,assignee_id,group_id,has_incidents,is_public,
           satisfaction_rating,motivo,is_client,estado_uf,fila,nota_csat,dependencia,social_message_channel_info,extraction_date)
 SELECT * FROM
-  `paylivre-304215.suporte.zendesk_tickets`
+  `table_id`
 WHERE status = 'pending';
-INSERT INTO `paylivre-304215.suporte.solved_tickets` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
+INSERT INTO `table_id` (ticket_id,channel,created_at,updated_at,type,subject,raw_subject,description,priority,
           status,recipient,requester_id,submitter_id,assignee_id,group_id,has_incidents,is_public,
           satisfaction_rating,motivo,is_client,estado_uf,fila,nota_csat,dependencia,social_message_channel_info,extraction_date)
 SELECT * FROM
-  `paylivre-304215.suporte.zendesk_tickets`
+  `table_id`
 WHERE status = 'solved';"""
 
 query_job = client.query(append_to_backlog)
