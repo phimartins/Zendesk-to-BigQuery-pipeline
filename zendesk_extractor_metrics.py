@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 from datetime import date
 from google.cloud import bigquery
 import re
@@ -17,9 +11,9 @@ import numpy as np
 # In[8]:
 
 
-SERVICE_ACCOUNT_JSON = r'C:\pipelines\auth\paylivre-304215-78a2e9fec1be.json'
+SERVICE_ACCOUNT_JSON = r'your service account file path'
 client = bigquery.Client.from_service_account_json(SERVICE_ACCOUNT_JSON)
-table_id = "paylivre-304215.suporte.zendesk_tickets_metrics"
+table_id = "table_id"
 #dataset = bigquery.Dataset(dataset_id)
 #dataset.location("US")
 
@@ -240,58 +234,58 @@ job.result()
 # In[138]:
 
 
-update_metrics = """UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+update_metrics = """UPDATE `table_id`
 SET assignee_updated_at = NULL
 WHERE assignee_updated_at = '2100-01-01T00:00:01';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET requester_updated_at = NULL
 WHERE requester_updated_at = '2100-01-01T00:00:01';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET status_updated_at = NULL
 WHERE status_updated_at = '2100-01-01T00:00:01';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET initially_assigned_at = NULL
 WHERE initially_assigned_at = '2100-01-01T00:00:01';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET assigned_at = NULL
 WHERE assigned_at = '2100-01-01T00:00:01';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET solved_at = NULL
 WHERE solved_at = '2100-01-01T00:00:01';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET reply_time_in_minutes_calendar = NULL
 WHERE reply_time_in_minutes_calendar = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET reply_time_in_minutes_business = NULL
 WHERE reply_time_in_minutes_business = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET first_resolution_time_in_minutes_calendar = NULL
 WHERE first_resolution_time_in_minutes_calendar = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET first_resolution_time_in_minutes_business = NULL
 WHERE first_resolution_time_in_minutes_business = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET full_resolution_time_in_minutes_calendar = NULL
 WHERE full_resolution_time_in_minutes_calendar = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET full_resolution_time_in_minutes_business = NULL
 WHERE full_resolution_time_in_minutes_business = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET agent_wait_time_in_minutes_calendar = NULL
 WHERE agent_wait_time_in_minutes_calendar = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET agent_wait_time_in_minutes_business = NULL
 WHERE agent_wait_time_in_minutes_business = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET requester_wait_time_in_minutes_calendar = NULL
 WHERE requester_wait_time_in_minutes_calendar = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET requester_wait_time_in_minutes_business = NULL
 WHERE requester_wait_time_in_minutes_business = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET on_hold_time_in_minutes_calendar = NULL
 WHERE on_hold_time_in_minutes_calendar = '';
-UPDATE `paylivre-304215.suporte.zendesk_tickets_metrics`
+UPDATE `table_id`
 SET on_hold_time_in_minutes_business = NULL
 WHERE on_hold_time_in_minutes_business = '';"""
 
